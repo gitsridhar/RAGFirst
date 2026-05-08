@@ -25,3 +25,11 @@ def embed_chunks(chunks: List[str]) -> List[List[float]]:
         embeddings.append(response.data[0].embedding)
     print(f"Embedded 2:", embeddings[0][:1])
     return embeddings
+
+def embed_query(query: str) -> List[float]:
+    response = client.embeddings.create(
+        model=EMBEDDING_MODEL,
+        input=query
+    )
+    print(f"Embedded query:", response.data[0].embedding[:1])
+    return response.data[0].embedding
